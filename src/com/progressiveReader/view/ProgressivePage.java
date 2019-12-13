@@ -165,6 +165,10 @@ public class ProgressivePage {
 		return overrideButton;
 	}
 	
+	public JButton getOverrideButton() {
+		return overrideButton;
+	}
+	
 	private JButton submitButton;
 	private JButton submitButton() {
 		View.c.gridx = 1;
@@ -195,6 +199,7 @@ public class ProgressivePage {
 		for (JButton key : keyButtons)
 			key.addActionListener(l);
 		submitButton.addActionListener(l);
+		overrideButton.addActionListener(l);
 	}
 
 }

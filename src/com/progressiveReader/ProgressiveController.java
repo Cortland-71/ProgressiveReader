@@ -18,6 +18,7 @@ public class ProgressiveController implements ActionListener {
 	private IO io;
 	private List<JButton> buttonList = new ArrayList<>();
 	private List<String> inputs = new ArrayList<>();
+	private List<String> overrides = new ArrayList<>();
 	private String numberText = "";
 	public static int dataIndex = 0;
 	
@@ -35,6 +36,7 @@ public class ProgressiveController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		getNumberPadEvents(e);
 		getSubmitButtonEvent(e);
+		getOverrideButtonEvent(e);
 	}
 	
 	//KeyPad Event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -71,20 +73,10 @@ public class ProgressiveController implements ActionListener {
 	//Submit Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private void getSubmitButtonEvent(ActionEvent e) {
 		if (e.getSource() == view.getProgressivePage().getSubmitButton()) {
-			
 			if (invalidAmount()) return;
-			
-			dataIndex++;
-			inputs.add(view.getProgressivePage().getProgressiveFieldText());
-			clearProgressiveField();
-			
-			if (dataIndex < io.getMasterLists().size()) {
-				view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(dataIndex).get(1));
-				view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(dataIndex).get(0));
-				return;
-			}
-			JOptionPane.showMessageDialog(null, "You are done :)");
-			System.exit(0);
+			addEntry("F");
+			if (stillEnteringProgressives()) return;
+			finish();
 		}
 	}
 	
@@ -104,8 +96,42 @@ public class ProgressiveController implements ActionListener {
 		return false;
 	}
 	
+	//Override Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+	private void getOverrideButtonEvent(ActionEvent e) {
+		if (e.getSource() == view.getProgressivePage().getOverrideButton()) {
+			if (view.getProgressivePage().getProgressiveFieldText().trim().equals("")) return;
+			addEntry("T");
+			if (stillEnteringProgressives()) return;
+			finish();
+		}
+	}
+	
+	//Helper methods
+	
+	private void addEntry(String overrideState) {
+		dataIndex++;
+		inputs.add(view.getProgressivePage().getProgressiveFieldText());
+		overrides.add(overrideState);
+		clearProgressiveField();
+	}
+	
 	private void clearProgressiveField() {
 		numberText = "";
 		view.getProgressivePage().setProgressiveFieldText(numberText);
+	}
+	
+	private boolean stillEnteringProgressives() {
+		if (dataIndex < io.getMasterLists().size()) {
+			view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(dataIndex).get(1));
+			view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(dataIndex).get(0));
+			return true;
+		}
+		return false;
+	}
+	
+	private void finish() {
+		JOptionPane.showMessageDialog(null, "You are done :)");
+		overrides.forEach(System.out::print);
+		System.exit(0);
 	}
 }
