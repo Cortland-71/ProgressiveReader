@@ -131,6 +131,8 @@ public class ProgressiveController implements ActionListener {
 	
 	private void finish() {
 		JOptionPane.showMessageDialog(null, "You are done :)");
+		for (int i=0;i<io.getMasterLists().size(); i++)
+			System.out.println("Entry: " + inputs.get(i) + " " + io.getMasterLists().get(i));
 		overrides.forEach(System.out::print);
 		System.exit(0);
 	}
