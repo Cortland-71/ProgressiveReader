@@ -96,9 +96,9 @@ public class UserPage {
 		View.c.gridy = 1;
 		View.c.insets = new Insets(0,0,0,0);
 		nameField = new JTextField();
-		nameField.setPreferredSize(new Dimension(400,30));
+		nameField.setPreferredSize(new Dimension(500,40));
 		nameField.setHorizontalAlignment(JTextField.CENTER);
-		View.setFont(nameField, "Arial", 1, 25, Color.BLACK);
+		View.setFont(nameField, "Arial", 1, 30, Color.BLACK);
 		return nameField;
 	}
 	
@@ -152,7 +152,7 @@ public class UserPage {
 	private JLabel locationLabel() {
 		View.c.gridx = 0;
 		View.c.gridy = 4;
-		View.c.insets = new Insets(5,0,170,0);
+		View.c.insets = new Insets(5,0,150,0);
 		View.c.anchor = GridBagConstraints.WEST;
 		locationLabel = new JLabel();
 		View.setFont(locationLabel, "Arial", 0, 12, Color.LIGHT_GRAY);
@@ -183,9 +183,9 @@ public class UserPage {
 	private JButton backButton() {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,50,250);
+		View.c.insets = new Insets(0,0,100,250);
 		backButton = new JButton("BACK");
-		backButton.setPreferredSize(new Dimension(200, 80));
+		backButton.setPreferredSize(new Dimension(250, 100));
 		backButton.setBackground(new Color(230,115,0));
 		backButton.setFocusable(false);
 		View.setFont(backButton, "Arial", 1, 20, Color.WHITE);
@@ -196,9 +196,9 @@ public class UserPage {
 	private JButton submitButton() {
 		View.c.gridx = 1;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,250,50,0);
+		View.c.insets = new Insets(0,250,100,0);
 		submitButton = new JButton("Submit");
-		submitButton.setPreferredSize(new Dimension(200, 80));
+		submitButton.setPreferredSize(new Dimension(250, 100));
 		submitButton.setBackground(View.DEFAULT_SUBMIT_COLOR);
 		submitButton.setFocusable(false);
 		View.setFont(submitButton, "Arial", 1, 20, Color.WHITE);

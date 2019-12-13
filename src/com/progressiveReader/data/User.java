@@ -7,7 +7,9 @@ public class User {
 	private String time;
 	private String location;
 	
-	public User(String name, String date, String time, String location) {
+	public User() {}
+	
+	public void setUser(String name, String date, String time, String location) {
 		this.name = name;
 		this.date = date;
 		this.time = time;

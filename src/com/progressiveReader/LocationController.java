@@ -11,23 +11,23 @@ import com.progressiveReader.view.View;
 
 public class LocationController implements ActionListener {
 	
-	private View view;
-	private IO io;
+	private Driver driver;
+
 	private final String YC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\YavapaiMaster-Dummy.csv";
 	private final String BC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\BuckysMaster.csv";
 	private String locationText;
 	
-	public LocationController(View view, IO io) {
-		this.view = view;
-		this.view.getLocationPage().setLocationActionListener(this);
-		this.io = io;
+	public LocationController(Driver driver) {
+		this.driver = driver;
+		this.driver.getView().getLocationPage().setLocationActionListener(this);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String locationPath = null;
 		String masterPath = null;
-		if (e.getSource() == view.getLocationPage().getBuckysButton()) {
+		if (e.getSource() == driver.getView().getLocationPage().getBuckysButton()) {
 			locationPath = "/BCLogo2.png";
 			masterPath = BC_MASTER_PATH;
 			locationText = "Buckys";
@@ -38,15 +38,14 @@ public class LocationController implements ActionListener {
 			locationText = "Yavapai";
 		}
 		
-		view.getUserPage().setSelectedLocationLabel(locationPath);
-		view.getUserPage().setDateLabel(LocalDate.now().toString());
-		view.getUserPage().setTimeLabel(DateTimeFormatter.ofPattern("kk:mm").format(LocalTime.now()));
-		view.getUserPage().setLocationLabel(locationText);
-		io.readMasterCSV(masterPath);
-		io.getMasterLists().forEach(System.out::println);
-		view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(0).get(1));
-		view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(0).get(0));
-		View.cl.show(view.getRootPanel(), "2");
+		driver.getView().getUserPage().setSelectedLocationLabel(locationPath);
+		driver.getView().getUserPage().setDateLabel(LocalDate.now().toString());
+		driver.getView().getUserPage().setTimeLabel(DateTimeFormatter.ofPattern("kk:mm").format(LocalTime.now()));
+		driver.getView().getUserPage().setLocationLabel(locationText);
+		driver.getIo().readMasterCSV(masterPath);
+		driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(0).get(1));
+		driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(0).get(0));
+		View.cl.show(driver.getView().getRootPanel(), "2");
 		
 	}
 

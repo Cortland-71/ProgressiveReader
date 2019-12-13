@@ -9,8 +9,9 @@ import javax.swing.*;
 
 public class LocationPage {
 	
-	private final int BTN_WIDTH = 400;
-	private final int BTN_HEIGHT = 300; 
+	private final int BTN_WIDTH = 450;
+	private final int BTN_HEIGHT = 350; 
+	private final int BTN_EDGE = 100;
 	
 	JPanel getLocationPanel() throws IOException {
 		JPanel locationPanel = new JPanel();
@@ -54,7 +55,7 @@ public class LocationPage {
 	private JButton buckysButton() throws IOException {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(0,50,0,50);
+		View.c.insets = new Insets(0,BTN_EDGE,0,0);
 		buckysButton = new JButton();
 		Image bcImage = ImageIO.read(getClass().getResource("/BCLogo2.png"));
 		buckysButton.setIcon(new ImageIcon(bcImage));
@@ -76,6 +77,9 @@ public class LocationPage {
 	
 	private JButton yavapaiButton;
 	private JButton yavapaiButton() throws IOException {
+		View.c.gridx = 0;
+		View.c.gridy = 0;
+		View.c.insets = new Insets(0,0,0,BTN_EDGE);
 		yavapaiButton = new JButton();
 		Image ycImage = ImageIO.read(getClass().getResource("/YCLogo2.png"));
 		yavapaiButton.setIcon(new ImageIcon(ycImage));

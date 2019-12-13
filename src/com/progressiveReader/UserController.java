@@ -10,41 +10,35 @@ import com.progressiveReader.view.View;
 
 public class UserController implements ActionListener {
 	
-	private View view;
-	private User user;
-	
-	public UserController(View view) {
-		this.view = view;
-		this.view.getUserPage().setBackButtonListener(this);
+	private Driver driver;
+	public UserController(Driver driver) {
+		this.driver = driver;
+		this.driver.getView().getUserPage().setBackButtonListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == view.getUserPage().getBackButton()) {
-			View.cl.show(view.getRootPanel(), "1");
+		if (e.getSource() == driver.getView().getUserPage().getBackButton()) {
+			View.cl.show(driver.getView().getRootPanel(), "1");
 			return;
 		}
 		submitNewUser();
 	}
 	
 	private void submitNewUser() {
-		if (view.getUserPage().getNameFieldText().trim().isEmpty()) {
-			view.getUserPage().clearNameField();
+		if (driver.getView().getUserPage().getNameFieldText().trim().isEmpty()) {
+			driver.getView().getUserPage().clearNameField();
 			JOptionPane.showMessageDialog(null,"You must enter your name to proceed", "No name entered",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
-		String name = view.getUserPage().getNameFieldText();
-		String date = view.getUserPage().getDateLabelText();
-		String time = view.getUserPage().getTimeLabelText();
-		String location = view.getUserPage().getLocationLabelText();
+		String name = driver.getView().getUserPage().getNameFieldText();
+		String date = driver.getView().getUserPage().getDateLabelText();
+		String time = driver.getView().getUserPage().getTimeLabelText();
+		String location = driver.getView().getUserPage().getLocationLabelText();
 		
-		user = new User(name, date, time, location);
-		System.out.println(user);
-		View.cl.show(view.getRootPanel(), "3");
-	}
-	
-	public User getUser() {
-		return user;
+		driver.getUser().setUser(name, date, time, location); 
+		System.out.println(driver.getUser());
+		View.cl.show(driver.getView().getRootPanel(), "3");
 	}
 }
