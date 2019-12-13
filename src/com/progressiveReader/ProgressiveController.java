@@ -19,7 +19,7 @@ public class ProgressiveController implements ActionListener {
 	private List<JButton> buttonList = new ArrayList<>();
 	private List<String> inputs = new ArrayList<>();
 	private String numberText = "";
-	private int dataIndex = 0;
+	public static int dataIndex = 0;
 	
 	public ProgressiveController(View view, IO io) {
 		this.view = view;
@@ -72,9 +72,12 @@ public class ProgressiveController implements ActionListener {
 	private void getSubmitButtonEvent(ActionEvent e) {
 		if (e.getSource() == view.getProgressivePage().getSubmitButton()) {
 			
+			if (invalidAmount()) return;
+			
 			dataIndex++;
 			inputs.add(view.getProgressivePage().getProgressiveFieldText());
 			clearProgressiveField();
+			
 			if (dataIndex < io.getMasterLists().size()) {
 				view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(dataIndex).get(1));
 				view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(dataIndex).get(0));
@@ -83,6 +86,22 @@ public class ProgressiveController implements ActionListener {
 			JOptionPane.showMessageDialog(null, "You are done :)");
 			System.exit(0);
 		}
+	}
+	
+	private boolean invalidAmount() {
+		
+		if (view.getProgressivePage().getProgressiveFieldText().trim().equals("")) return true;
+		
+		double input = Double.parseDouble(view.getProgressivePage().getProgressiveFieldText());
+		double resetAmount = Double.parseDouble(io.getMasterLists().get(dataIndex).get(2));
+		double maxAmount = Double.parseDouble(io.getMasterLists().get(dataIndex).get(3));
+		
+		if (input < resetAmount || input > maxAmount) {
+			JOptionPane.showMessageDialog(null, "Entry might be incorrect. Please check and try again. "
+					+ "If you are sure the entry is correct. You can Override the entry.");
+			return true;
+		}
+		return false;
 	}
 	
 	private void clearProgressiveField() {

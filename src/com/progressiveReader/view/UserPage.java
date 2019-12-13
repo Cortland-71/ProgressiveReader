@@ -10,9 +10,6 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,7 +55,6 @@ public class UserPage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	//Center Panel \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -80,6 +76,7 @@ public class UserPage {
 		centerInCenterPanel.add(nameField(), View.c);
 		centerInCenterPanel.add(dateLabel(), View.c);
 		centerInCenterPanel.add(timeLabel(), View.c);
+		centerInCenterPanel.add(locationLabel(), View.c);
 		return centerInCenterPanel;
 	}
 	private JLabel nameLabel;
@@ -128,11 +125,15 @@ public class UserPage {
 		dateLabel.setText(date);
 	}
 	
+	public String getDateLabelText() {
+		return dateLabel.getText();
+	}
+	
 	private JLabel timeLabel;
 	private JLabel timeLabel() {
 		View.c.gridx = 0;
 		View.c.gridy = 3;
-		View.c.insets = new Insets(5,0,170,0);
+		View.c.insets = new Insets(5,0,0,0);
 		View.c.anchor = GridBagConstraints.WEST;
 		timeLabel = new JLabel();
 		View.setFont(timeLabel, "Arial", 0, 12, Color.LIGHT_GRAY);
@@ -143,6 +144,30 @@ public class UserPage {
 		timeLabel.setText(time);
 	}
 
+	public String getTimeLabelText() {
+		return timeLabel.getText();
+	}
+	
+	private JLabel locationLabel;
+	private JLabel locationLabel() {
+		View.c.gridx = 0;
+		View.c.gridy = 4;
+		View.c.insets = new Insets(5,0,170,0);
+		View.c.anchor = GridBagConstraints.WEST;
+		locationLabel = new JLabel();
+		View.setFont(locationLabel, "Arial", 0, 12, Color.LIGHT_GRAY);
+		return locationLabel;
+	}
+	
+	public void setLocationLabel(String location) {
+		locationLabel.setText(location);
+	}
+
+	public String getLocationLabelText() {
+		return locationLabel.getText();
+	}
+	
+	
 	
 	//South Panel \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private JPanel southPanel() {
