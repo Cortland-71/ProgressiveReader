@@ -13,7 +13,7 @@ public class LocationController implements ActionListener {
 	
 	private View view;
 	private IO io;
-	private final String YC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\YavapaiMaster.csv";
+	private final String YC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\YavapaiMaster-Dummy.csv";
 	private final String BC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\BuckysMaster.csv";
 	
 	public LocationController(View view, IO io) {

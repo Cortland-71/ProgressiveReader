@@ -17,9 +17,9 @@ public class ProgressiveController implements ActionListener {
 	private View view;
 	private IO io;
 	private List<JButton> buttonList = new ArrayList<>();
+	private List<String> inputs = new ArrayList<>();
 	private String numberText = "";
 	private int dataIndex = 0;
-	private List<String> inputs = new ArrayList<>();
 	
 	public ProgressiveController(View view, IO io) {
 		this.view = view;
@@ -37,24 +37,7 @@ public class ProgressiveController implements ActionListener {
 		getSubmitButtonEvent(e);
 	}
 	
-	private void getSubmitButtonEvent(ActionEvent e) {
-		if (e.getSource() == view.getProgressivePage().getSubmitButton()) {
-			dataIndex++;
-			view.getProgressivePage().setProgressiveFieldText(Integer.toString(dataIndex));
-			if (dataIndex < io.getMasterLists().size()-1) {
-				inputs.add(view.getProgressivePage().getProgressiveFieldText());
-				view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(dataIndex).get(1));
-				view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(dataIndex).get(0));
-				return;
-			}
-			System.out.println(inputs.get(0));
-			System.out.println(inputs.size());
-			System.out.println(io.getMasterLists().size());
-			JOptionPane.showMessageDialog(null, "You are done :)" + dataIndex);
-			System.exit(0);
-		}
-	}
-	
+	//KeyPad Event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private void getNumberPadEvents(ActionEvent e) {
 		if (e.getSource() == buttonList.get(9)) {
 			if (numberText.length() > 0) numberText = getStringWithDeletedItem();
@@ -83,5 +66,27 @@ public class ProgressiveController implements ActionListener {
 			if (sub.length() > 2) return true;
 		}
 		return false;
+	}
+	
+	//Submit Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+	private void getSubmitButtonEvent(ActionEvent e) {
+		if (e.getSource() == view.getProgressivePage().getSubmitButton()) {
+			
+			dataIndex++;
+			inputs.add(view.getProgressivePage().getProgressiveFieldText());
+			clearProgressiveField();
+			if (dataIndex < io.getMasterLists().size()) {
+				view.getProgressivePage().setMachineNameLabel(io.getMasterLists().get(dataIndex).get(1));
+				view.getProgressivePage().setMachineNumberLabel(io.getMasterLists().get(dataIndex).get(0));
+				return;
+			}
+			JOptionPane.showMessageDialog(null, "You are done :)");
+			System.exit(0);
+		}
+	}
+	
+	private void clearProgressiveField() {
+		numberText = "";
+		view.getProgressivePage().setProgressiveFieldText(numberText);
 	}
 }
