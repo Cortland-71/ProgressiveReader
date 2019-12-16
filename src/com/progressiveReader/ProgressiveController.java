@@ -4,14 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import com.progressiveReader.data.IO;
-import com.progressiveReader.view.View;
 
 public class ProgressiveController implements ActionListener {
 
@@ -19,8 +15,11 @@ public class ProgressiveController implements ActionListener {
 	private List<JButton> buttonList = new ArrayList<>();
 	private List<String> inputs = new ArrayList<>();
 	private List<String> overrides = new ArrayList<>();
-	private String numberText = "";
+	private StringBuilder numberText = new StringBuilder();
+	private final int BACK_SPACE = 9;
+	private final int PERIOD = 11;
 	public static int dataIndex = 0;
+	
 	
 	public ProgressiveController(Driver driver) {
 		this.driver = driver;
@@ -44,29 +43,27 @@ public class ProgressiveController implements ActionListener {
 	
 	//KeyPad Event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private void getNumberPadEvents(ActionEvent e) {
-		if (e.getSource() == buttonList.get(9)) {
-			if (numberText.length() > 0) numberText = getStringWithDeletedItem();
-		} else if (e.getSource() == buttonList.get(11)) {
-			if (!numberText.contains(".")) numberText += "."; 
+		if (e.getSource() == buttonList.get(BACK_SPACE)) {
+			if (numberText.length() > 0) deleteLastNumber();
+		} else if (e.getSource() == buttonList.get(PERIOD)) {
+			if (!numberText.toString().contains(".")) numberText.append("."); 
 		} else {
 			for (JButton button : buttonList) {
 				if (e.getSource() == button) {
 					if (numberHasTwoDecimalSpots()) return; 
-					numberText += button.getText();
+					numberText.append(button.getText());
 				} 
 			}
 		}
-		driver.getView().getProgressivePage().setProgressiveFieldText(numberText);
+		driver.getView().getProgressivePage().setProgressiveFieldText(numberText.toString());
 	}
 	
-	private String getStringWithDeletedItem() {
-		List<String> letterList = new ArrayList<>(Arrays.asList(numberText.split("")));
-		letterList.remove(letterList.size()-1);
-		return String.join("", letterList);
+	private void deleteLastNumber() {
+		numberText.deleteCharAt(numberText.length()-1);
 	}
 	
 	private boolean numberHasTwoDecimalSpots() {
-		if (numberText.contains(".")) {
+		if (numberText.toString().contains(".")) {
 			String sub = numberText.substring(numberText.indexOf("."));
 			if (sub.length() > 2) return true;
 		}
@@ -123,8 +120,8 @@ public class ProgressiveController implements ActionListener {
 	}
 	
 	private void clearProgressiveField() {
-		numberText = "";
-		driver.getView().getProgressivePage().setProgressiveFieldText(numberText);
+		numberText.deleteCharAt(0);
+		driver.getView().getProgressivePage().setProgressiveFieldText(numberText.toString());
 	}
 	
 	private boolean stillEnteringProgressives() {

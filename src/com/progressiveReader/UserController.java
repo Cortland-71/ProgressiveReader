@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import com.progressiveReader.data.User;
 import com.progressiveReader.view.View;
 
 public class UserController implements ActionListener {

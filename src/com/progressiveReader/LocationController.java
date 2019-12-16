@@ -1,13 +1,11 @@
 package com.progressiveReader;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.awt.event.*;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import com.progressiveReader.data.IO;
 import com.progressiveReader.view.View;
+
 
 public class LocationController implements ActionListener {
 	
