@@ -43,6 +43,7 @@ public class LocationController implements ActionListener {
 		driver.getIo().readMasterCSV(masterPath);
 		driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(0).get(1));
 		driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(0).get(0));
+		driver.getView().getProgressivePage().setCountLabel("1/"+driver.getIo().getMasterLists().size());
 		View.cl.show(driver.getView().getRootPanel(), "2");
 		
 	}

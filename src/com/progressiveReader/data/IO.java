@@ -1,6 +1,9 @@
 package com.progressiveReader.data;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.progressiveReader.Driver;
@@ -72,6 +75,19 @@ public class IO {
 			w.append(",");
 		}
 		w.append("\n");
+	}
+	
+	public void copyCSV(String location) {
+		File source = new File(outputPath);
+		String date = DateTimeFormatter.ofPattern("yyyy-MM-dd (hhmm a)").format(LocalDateTime.now());
+		File dest = new File("\\\\yganas01\\YDrive\\Finance\\Shared\\Daily Casino Progressives\\"
+				+ "Progressive Backups\\"+location+" Backups\\"+location+date+".csv");
+		try {
+			Files.copy(source.toPath(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public List<List<String>> getMasterLists() {

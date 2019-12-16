@@ -122,6 +122,7 @@ public class ProgressiveController implements ActionListener {
 		if (dataIndex < driver.getIo().getMasterLists().size()) {
 			driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(dataIndex).get(1));
 			driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(dataIndex).get(0));
+			driver.getView().getProgressivePage().setCountLabel(dataIndex + 1 + "/" + driver.getIo().getMasterLists().size());
 			clearProgressiveField();
 			return true;
 		}
@@ -136,6 +137,7 @@ public class ProgressiveController implements ActionListener {
 	private void finish() throws IOException {
 		JOptionPane.showMessageDialog(null, "You are done :)");
 		driver.getIo().writeFinanceOutput();
+		driver.getIo().copyCSV(driver.getUser().getUserData().get(1));
 		System.exit(0);
 	}
 	

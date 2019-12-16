@@ -36,19 +36,50 @@ public class ProgressivePage {
 	//North panel \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private JPanel northPanel() {
 		JPanel northPanel = new JPanel();
-		northPanel.setLayout(new GridBagLayout());
+		northPanel.setLayout(new BorderLayout());
 		northPanel.setBackground(new Color(194,194,194));
 		northPanel.setBorder(BorderFactory.createEtchedBorder());
-		northPanel.add(machineNameLabel(), View.c);
-		northPanel.add(machineNumberLabel(), View.c);
+		northPanel.add(northInNorthPanel(), BorderLayout.NORTH);
+		northPanel.add(centerInNorthPanel(), BorderLayout.CENTER);
 		return northPanel;
+	}
+	
+	private JPanel northInNorthPanel() {
+		JPanel northInNorthPanel = new JPanel();
+		northInNorthPanel.setLayout(new GridBagLayout());
+		northInNorthPanel.setBackground(new Color(194,194,194));
+		northInNorthPanel.add(countLabel(), View.c);
+		return northInNorthPanel;
+	}
+	
+	private JLabel countLabel;
+	private JLabel countLabel() {
+		View.c.gridx = 0;
+		View.c.gridy = 0;
+		View.c.insets = new Insets(5,0,0,0);
+		View.c.anchor = GridBagConstraints.WEST;
+		countLabel = new JLabel();
+		View.setFont(countLabel, "Consolas", 0, 12, Color.DARK_GRAY);
+		return countLabel;
+	}
+	public void setCountLabel(String text) {
+		countLabel.setText(text);
+	}
+	
+	private JPanel centerInNorthPanel() {
+		JPanel centerInNorthPanel = new JPanel();
+		centerInNorthPanel.setLayout(new GridBagLayout());
+		centerInNorthPanel.setBackground(new Color(194,194,194));
+		centerInNorthPanel.add(machineNameLabel(), View.c);
+		centerInNorthPanel.add(machineNumberLabel(), View.c);
+		return centerInNorthPanel;
 	}
 	
 	private JLabel machineNameLabel;
 	private JLabel machineNameLabel() {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,0,0);
+		View.c.insets = new Insets(5,0,0,0);
 		View.c.anchor = GridBagConstraints.CENTER;
 		machineNameLabel = new JLabel("Machine Name");
 		View.setFont(machineNameLabel, "Arial", 1, 35, Color.BLACK);
