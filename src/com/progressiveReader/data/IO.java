@@ -57,8 +57,9 @@ public class IO {
 		overrides = driver.getProgressiveController().getOverrides();
 		w = new FileWriter(outputPath);
 		generateFinalLists();
-		writeOutHeader(w);
+		writeSingleRow(w, headerInfo);
 		writeOutData(w);
+		writeSingleRow(w, driver.getUser().getUserData());
 		w.flush();
         w.close();
 	}
@@ -73,8 +74,8 @@ public class IO {
 		}
 	}
 	
-	private void writeOutHeader(Writer w) throws IOException {
-		for (String i : headerInfo) {
+	private void writeSingleRow(Writer w, List<String> list) throws IOException {
+		for (String i : list) {
 			w.append(i);
 			w.append(",");
 		}

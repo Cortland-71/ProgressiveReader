@@ -1,40 +1,20 @@
 package com.progressiveReader.data;
 
+import java.util.*;
+
 public class User {
-	
-	private String name;
-	private String date;
-	private String time;
-	private String location;
+	private List<String> userData = new ArrayList<>();
 	
 	public User() {}
 	
 	public void setUser(String name, String date, String time, String location) {
-		this.name = name;
-		this.date = date;
-		this.time = time;
-		this.location = location;
-	}
-	public String getName() {
-		return name;
+		userData.add(name);
+		userData.add(location);
+		userData.add(date);
+		userData.add(time);
 	}
 	
-	public String getDate() {
-		return date;
+	public List<String> getUserData() {
+		return userData;
 	}
-	
-	public String getTime() {
-		return time;
-	}
-	
-	public String getLocation() {
-		return location;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", date=" + date + ", time=" + time + ", location=" + location + "]";
-	}
-	
-	
 }

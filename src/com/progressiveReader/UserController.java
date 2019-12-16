@@ -35,9 +35,7 @@ public class UserController implements ActionListener {
 		String date = driver.getView().getUserPage().getDateLabelText();
 		String time = driver.getView().getUserPage().getTimeLabelText();
 		String location = driver.getView().getUserPage().getLocationLabelText();
-		
 		driver.getUser().setUser(name, date, time, location); 
-		System.out.println(driver.getUser());
 		View.cl.show(driver.getView().getRootPanel(), "3");
 	}
 }

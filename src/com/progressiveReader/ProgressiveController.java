@@ -116,21 +116,21 @@ public class ProgressiveController implements ActionListener {
 		dataIndex++;
 		inputs.add(driver.getView().getProgressivePage().getProgressiveFieldText());
 		overrides.add(overrideState);
-		clearProgressiveField();
-	}
-	
-	private void clearProgressiveField() {
-		numberText.deleteCharAt(0);
-		driver.getView().getProgressivePage().setProgressiveFieldText(numberText.toString());
 	}
 	
 	private boolean stillEnteringProgressives() {
 		if (dataIndex < driver.getIo().getMasterLists().size()) {
 			driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(dataIndex).get(1));
 			driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(dataIndex).get(0));
+			clearProgressiveField();
 			return true;
 		}
 		return false;
+	}
+	
+	private void clearProgressiveField() {
+		numberText.delete(0, numberText.length());
+		driver.getView().getProgressivePage().setProgressiveFieldText(numberText.toString());
 	}
 	
 	private void finish() throws IOException {
