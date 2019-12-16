@@ -1,11 +1,7 @@
 package com.progressiveReader.data;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 
 import com.progressiveReader.Driver;
 
@@ -18,7 +14,7 @@ public class IO {
 	private List<String> inputs = new ArrayList<>();
 	private List<String> overrides = new ArrayList<>();
 	private final String outputPath = "\\\\yganas01\\YDrive\\Finance\\Shared\\Daily Casino Progressives\\"
-			+ "Dailey Progressives\\Yavapai Progressives\\YavapaiFinanceNew.csv";
+			+ "Dailey Progressives\\Yavapai Progressives\\YavapaiFinance.csv";
 	private final List<String> headerInfo = Arrays.asList("Machine Number","Machine Name","Progressive Amount",
 			"Reset Amount","Max Amount"," Override");
 	
@@ -66,11 +62,7 @@ public class IO {
 	
 	private void writeOutData(Writer w) throws IOException {
 		for (List<String> list : masterLists) {
-			for (String i : list) {
-				w.append(i);
-				w.append(",");
-			}
-			w.append("\n");
+			writeSingleRow(w, list);
 		}
 	}
 	
