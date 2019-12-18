@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 public class ProgressivePage {
 	
-	private final int EAST_WEST_WIDTH = 100;
+	private final int EAST_WEST_WIDTH = 200;
 	
 	JPanel getProgressivePanel() throws IOException {
 		JPanel progressivePanel = new JPanel();
