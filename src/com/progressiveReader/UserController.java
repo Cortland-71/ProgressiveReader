@@ -9,6 +9,10 @@ import com.progressiveReader.view.View;
 
 public class UserController implements ActionListener {
 	
+	private String date;
+	private String time;
+	private String location;
+	
 	private Driver driver;
 	public UserController(Driver driver) {
 		this.driver = driver;
@@ -32,10 +36,19 @@ public class UserController implements ActionListener {
 		}
 		
 		String name = driver.getView().getUserPage().getNameFieldText();
-		String date = driver.getView().getUserPage().getDateLabelText();
-		String time = driver.getView().getUserPage().getTimeLabelText();
-		String location = driver.getView().getUserPage().getLocationLabelText();
 		driver.getUser().setUser(name, date, time, location); 
 		View.cl.show(driver.getView().getRootPanel(), "3");
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }

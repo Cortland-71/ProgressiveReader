@@ -37,15 +37,14 @@ public class LocationController implements ActionListener {
 		}
 		
 		driver.getView().getUserPage().setSelectedLocationLabel(locationPath);
-		driver.getView().getUserPage().setDateLabel(LocalDate.now().toString());
-		driver.getView().getUserPage().setTimeLabel(DateTimeFormatter.ofPattern("kk:mm").format(LocalTime.now()));
-		driver.getView().getUserPage().setLocationLabel(locationText);
+		
+		driver.getUserController().setDate(LocalDate.now().toString());
+		driver.getUserController().setTime(DateTimeFormatter.ofPattern("kk:mm").format(LocalTime.now()));
+		driver.getUserController().setLocation(locationText);
 		driver.getIo().readMasterCSV(masterPath);
 		driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(0).get(1));
 		driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(0).get(0));
 		driver.getView().getProgressivePage().setCountLabel("1/"+driver.getIo().getMasterLists().size());
-		View.cl.show(driver.getView().getRootPanel(), "2");
-		
+		View.cl.show(driver.getView().getRootPanel(), "2");	
 	}
-
 }

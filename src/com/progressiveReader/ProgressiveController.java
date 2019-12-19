@@ -136,7 +136,7 @@ public class ProgressiveController implements ActionListener {
 	
 	private void finish() throws IOException {
 		JOptionPane.showMessageDialog(null, "You are done :)");
-		driver.getIo().writeFinanceOutput();
+		driver.getIo().writeFinanceOutput(driver.getUser().getUserData().get(1));
 		driver.getIo().copyCSV(driver.getUser().getUserData().get(1));
 		System.exit(0);
 	}
