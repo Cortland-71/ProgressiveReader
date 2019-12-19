@@ -20,7 +20,7 @@ public class View {
 	public View() throws IOException {
 		JFrame frame = new JFrame("Progressive Reader v1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(1280,750));
+		frame.setSize(new Dimension(1200,800));
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.add(rootPanel());
