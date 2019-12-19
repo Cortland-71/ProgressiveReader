@@ -18,7 +18,6 @@ public class LocationController implements ActionListener {
 	public LocationController(Driver driver) {
 		this.driver = driver;
 		this.driver.getView().getLocationPage().setLocationActionListener(this);
-
 	}
 
 	@Override

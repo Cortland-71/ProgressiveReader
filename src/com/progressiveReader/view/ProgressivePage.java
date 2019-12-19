@@ -187,7 +187,7 @@ public class ProgressivePage {
 	private JButton overrideButton() {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,20,250);
+		View.c.insets = new Insets(20,0,20,400);
 		overrideButton = new JButton("OVERRIDE");
 		overrideButton.setFocusable(false);
 		overrideButton.setPreferredSize(new Dimension(200,50));
@@ -204,7 +204,7 @@ public class ProgressivePage {
 	private JButton submitButton() {
 		View.c.gridx = 1;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,250,20,0);
+		View.c.insets = new Insets(20,400,20,0);
 		submitButton = new JButton("SUBMIT");
 		submitButton.setFocusable(false);
 		submitButton.setPreferredSize(new Dimension(200,50));
