@@ -36,6 +36,7 @@ public class ProgressiveController implements ActionListener {
 			getNumberPadEvents(e);
 			getSubmitButtonEvent(e);
 			getOverrideButtonEvent(e);
+			getBackButtonEvent(e);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -110,23 +111,42 @@ public class ProgressiveController implements ActionListener {
 		}
 	}
 	
+	//Back Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+	private void getBackButtonEvent(ActionEvent e) {
+		if (e.getSource() == driver.getView().getProgressivePage().getBackButton()) {
+			System.out.println(dataIndex);
+			if (dataIndex > 0) {
+				dataIndex-=1;
+				updateMachineNameAndNumber();
+				inputs.remove(dataIndex);
+			}
+		}
+	}
+	
 	//Helper methods
 	
 	private void addEntry(String overrideState) {
 		dataIndex++;
 		inputs.add(driver.getView().getProgressivePage().getProgressiveFieldText());
 		overrides.add(overrideState);
+		
+		inputs.forEach(System.out::println);
+		System.out.println();
 	}
 	
 	private boolean stillEnteringProgressives() {
 		if (dataIndex < driver.getIo().getMasterLists().size()) {
-			driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(dataIndex).get(1));
-			driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(dataIndex).get(0));
-			driver.getView().getProgressivePage().setCountLabel(dataIndex + 1 + "/" + driver.getIo().getMasterLists().size());
+			updateMachineNameAndNumber();
 			clearProgressiveField();
 			return true;
 		}
 		return false;
+	}
+	
+	private void updateMachineNameAndNumber() {
+		driver.getView().getProgressivePage().setMachineNameLabel(driver.getIo().getMasterLists().get(dataIndex).get(1));
+		driver.getView().getProgressivePage().setMachineNumberLabel(driver.getIo().getMasterLists().get(dataIndex).get(0));
+		driver.getView().getProgressivePage().setCountLabel(dataIndex + 1 + "/" + driver.getIo().getMasterLists().size());
 	}
 	
 	private void clearProgressiveField() {

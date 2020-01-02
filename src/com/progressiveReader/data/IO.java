@@ -96,5 +96,9 @@ public class IO {
 	public List<List<String>> getMasterLists() {
 		return masterLists;
 	}
+	
+	public List<String> getInputList() {
+		return inputs;
+	}
 
 }

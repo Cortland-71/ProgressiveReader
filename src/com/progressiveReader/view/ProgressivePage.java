@@ -178,16 +178,34 @@ public class ProgressivePage {
 		JPanel southPanel = new JPanel();
 		southPanel.setLayout(new GridBagLayout());
 		southPanel.setBackground(View.DEFAULT_BG);
+		southPanel.add(backButton(), View.c);
 		southPanel.add(overrideButton(), View.c);
 		southPanel.add(submitButton(), View.c);
 		return southPanel;
 	}
 	
-	private JButton overrideButton;
-	private JButton overrideButton() {
+	private JButton backButton;
+	private JButton backButton() {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,20,350);
+		View.c.insets = new Insets(20,0,20,0);
+		backButton = new JButton("BACK");
+		backButton.setFocusable(false);
+		backButton.setPreferredSize(new Dimension(200,50));
+		backButton.setBackground(new Color(255,142,66));
+		View.setFont(backButton, "Arial", 1, 15, Color.WHITE);
+		return backButton;
+	}
+	
+	public JButton getBackButton() {
+		return backButton;
+	}
+	
+	private JButton overrideButton;
+	private JButton overrideButton() {
+		View.c.gridx = 1;
+		View.c.gridy = 0;
+		View.c.insets = new Insets(20,200,20,200);
 		overrideButton = new JButton("OVERRIDE");
 		overrideButton.setFocusable(false);
 		overrideButton.setPreferredSize(new Dimension(200,50));
@@ -202,9 +220,9 @@ public class ProgressivePage {
 	
 	private JButton submitButton;
 	private JButton submitButton() {
-		View.c.gridx = 1;
+		View.c.gridx = 2;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,350,20,0);
+		View.c.insets = new Insets(20,0,20,0);
 		submitButton = new JButton("SUBMIT");
 		submitButton.setFocusable(false);
 		submitButton.setPreferredSize(new Dimension(200,50));
@@ -231,6 +249,7 @@ public class ProgressivePage {
 			key.addActionListener(l);
 		submitButton.addActionListener(l);
 		overrideButton.addActionListener(l);
+		backButton.addActionListener(l);
 	}
 
 }
