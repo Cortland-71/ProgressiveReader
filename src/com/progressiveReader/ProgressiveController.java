@@ -114,7 +114,6 @@ public class ProgressiveController implements ActionListener {
 	//Back Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private void getBackButtonEvent(ActionEvent e) {
 		if (e.getSource() == driver.getView().getProgressivePage().getBackButton()) {
-			System.out.println(dataIndex);
 			if (dataIndex > 0) {
 				dataIndex-=1;
 				updateMachineNameAndNumber();
@@ -129,9 +128,6 @@ public class ProgressiveController implements ActionListener {
 		dataIndex++;
 		inputs.add(driver.getView().getProgressivePage().getProgressiveFieldText());
 		overrides.add(overrideState);
-		
-		inputs.forEach(System.out::println);
-		System.out.println();
 	}
 	
 	private boolean stillEnteringProgressives() {
