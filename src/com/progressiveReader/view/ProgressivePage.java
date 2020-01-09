@@ -187,11 +187,11 @@ public class ProgressivePage {
 	private JButton backButton() {
 		View.c.gridx = 0;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,20,0);
+		View.c.insets = new Insets(20,0,20,300);
 		backButton = new JButton("BACK");
 		backButton.setFocusable(false);
 		backButton.setPreferredSize(new Dimension(200,50));
-		backButton.setBackground(new Color(255,142,66));
+		backButton.setBackground(Color.DARK_GRAY);
 		View.setFont(backButton, "Arial", 1, 15, Color.WHITE);
 		return backButton;
 	}
@@ -204,7 +204,7 @@ public class ProgressivePage {
 	private JButton submitButton() {
 		View.c.gridx = 2;
 		View.c.gridy = 0;
-		View.c.insets = new Insets(20,0,20,0);
+		View.c.insets = new Insets(20,300,20,0);
 		submitButton = new JButton("SUBMIT");
 		submitButton.setFocusable(false);
 		submitButton.setPreferredSize(new Dimension(200,50));
