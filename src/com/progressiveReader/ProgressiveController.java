@@ -35,7 +35,6 @@ public class ProgressiveController implements ActionListener {
 		try {
 			getNumberPadEvents(e);
 			getSubmitButtonEvent(e);
-			getOverrideButtonEvent(e);
 			getBackButtonEvent(e);
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -74,40 +73,22 @@ public class ProgressiveController implements ActionListener {
 	//Submit Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 	private void getSubmitButtonEvent(ActionEvent e) throws IOException {
 		if (e.getSource() == driver.getView().getProgressivePage().getSubmitButton()) {
-			if (invalidAmount()) return;
-			addEntry("F");
+			if (driver.getView().getProgressivePage().getProgressiveFieldText().trim().equals("")) return;
+			
+			double input = Double.parseDouble(driver.getView().getProgressivePage().getProgressiveFieldText());
+			double resetAmount = Double.parseDouble(driver.getIo().getMasterLists().get(dataIndex).get(2));
+			double maxAmount = Double.parseDouble(driver.getIo().getMasterLists().get(dataIndex).get(3));
+			String marker = "F";
+			
+			if (input < resetAmount || input > maxAmount) {
+				int reply = JOptionPane.showConfirmDialog(null, "Entry might be incorrect. Are you sure you want to override the entry?.", 
+						"INVALID", JOptionPane.CANCEL_OPTION);
+				if (reply == 0) marker = "T";
+				else return;
+			}
+			addEntry(marker);
 			if (stillEnteringProgressives()) return;
 			finish();
-		}
-	}
-	
-	private boolean invalidAmount() {
-		
-		if (driver.getView().getProgressivePage().getProgressiveFieldText().trim().equals("")) return true;
-		
-		double input = Double.parseDouble(driver.getView().getProgressivePage().getProgressiveFieldText());
-		double resetAmount = Double.parseDouble(driver.getIo().getMasterLists().get(dataIndex).get(2));
-		double maxAmount = Double.parseDouble(driver.getIo().getMasterLists().get(dataIndex).get(3));
-		
-		if (input < resetAmount || input > maxAmount) {
-			JOptionPane.showMessageDialog(null, "Entry might be incorrect. Please check and try again. "
-					+ "If you are sure the entry is correct. You can Override the entry.");
-			return true;
-		}
-		return false;
-	}
-	
-	//Override Button event \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-	private void getOverrideButtonEvent(ActionEvent e) throws IOException {
-		if (e.getSource() == driver.getView().getProgressivePage().getOverrideButton()) {
-			if (driver.getView().getProgressivePage().getProgressiveFieldText().trim().equals("")) return;
-			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to override this entry?", 
-					"OVERRIDE", JOptionPane.CANCEL_OPTION);
-			if (reply == 0) {
-				addEntry("T");
-				if (stillEnteringProgressives()) return;
-				finish();
-			}
 		}
 	}
 	

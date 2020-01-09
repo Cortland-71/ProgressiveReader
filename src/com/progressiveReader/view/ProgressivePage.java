@@ -179,7 +179,6 @@ public class ProgressivePage {
 		southPanel.setLayout(new GridBagLayout());
 		southPanel.setBackground(View.DEFAULT_BG);
 		southPanel.add(backButton(), View.c);
-		southPanel.add(overrideButton(), View.c);
 		southPanel.add(submitButton(), View.c);
 		return southPanel;
 	}
@@ -199,23 +198,6 @@ public class ProgressivePage {
 	
 	public JButton getBackButton() {
 		return backButton;
-	}
-	
-	private JButton overrideButton;
-	private JButton overrideButton() {
-		View.c.gridx = 1;
-		View.c.gridy = 0;
-		View.c.insets = new Insets(20,200,20,200);
-		overrideButton = new JButton("OVERRIDE");
-		overrideButton.setFocusable(false);
-		overrideButton.setPreferredSize(new Dimension(200,50));
-		overrideButton.setBackground(new Color(222,0,0));
-		View.setFont(overrideButton, "Arial", 1, 15, Color.WHITE);
-		return overrideButton;
-	}
-	
-	public JButton getOverrideButton() {
-		return overrideButton;
 	}
 	
 	private JButton submitButton;
@@ -248,7 +230,6 @@ public class ProgressivePage {
 		for (JButton key : keyButtons)
 			key.addActionListener(l);
 		submitButton.addActionListener(l);
-		overrideButton.addActionListener(l);
 		backButton.addActionListener(l);
 	}
 
