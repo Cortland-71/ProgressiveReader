@@ -18,7 +18,7 @@ public class View {
 	private ProgressivePage progressivePage = new ProgressivePage();
 	
 	public View() throws IOException {
-		JFrame frame = new JFrame("Progressive Reader v1.01");
+		JFrame frame = new JFrame("Progressive Reader v1.02");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(1200,800));
 		frame.setLocationRelativeTo(null);
