@@ -12,7 +12,7 @@ public class LocationController implements ActionListener {
 	private Driver driver;
 
 	private final String YC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\YavapaiMaster.csv";
-	private final String BC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\BuckysMasterDummy.csv";
+	private final String BC_MASTER_PATH = "\\\\yganas01\\YDrive\\Drop\\Drop Crew Progressive\\BuckysMaster.csv";
 	private String locationText;
 	
 	public LocationController(Driver driver) {
